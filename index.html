@@ -1,0 +1,589 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <title>DJ Playlist Tool</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/app.css">
+
+  <script type="text/javascript">
+
+  </script>
+
+</head>
+<body>
+
+<!-- Fixed top bar - everything between these <nav> elements will stay fixed while
+    the rest of the content scrolls. -->
+<div class="sticky-header">
+  <div class="row fixed-logo-panel">
+
+    <!-- KEXP Logo -->
+    <div class="small-2 medium-2 large-2 columns">
+      <img id="kexp-image" src="img/header/img-kexp-logo.png" />
+    </div>
+
+    <!-- DATE LOGIC -->
+    <div class="small-4 medium-4 large-4 columns date">
+      <br /><br/><!-- Force down 2 lines. -->
+      <img id="kexp-date-picker" class="kexp-date-picker" src="img/misc/img-edit.png" />
+      <span id="kexp-date"></span>
+    </div>
+
+
+  </div>
+
+  <div class="row fixed-band-panel">
+    <div class="small-3 medium-3 large-3 columns">
+      <img id="dj-image" src="img/277x135.png" />
+    </div>
+
+    <!-- DJ and SHOW information -->
+    <div class="small-4 medium-4 large-5 columns">
+      <br /> <!-- Force DJ name down one line. -->
+      <span id="show-dj" class="header-dj-name"></span></h4><br />
+      <span id="show-name" class="header-show-title"></span></h5><br />
+      <span id="show-slogan" class="header-slogan-desc"></span><br />
+
+      <a id="new-show-button" href="#" class="tiny secondary button">+ New Show</a>
+    </div>
+
+    <div class="small-5 medium-5 large-4 columns" style="text-align: right;">
+      <div class="row time">
+        <div class="small-12 medium-12 large-12 columns" style="text-align:right;">
+          <span id="kexp-time"></span><br />
+        </div>
+      </div>
+
+      <div class="row" style="width: 300px; margin-left: 30px;">
+
+        <!-- HIGH -->
+        <div class="small-2 medium-2 large-2 columns">
+          <div id="play-high" class="number-circle" style="background-color:#4a90e2;"></div>
+          <span class="tiny-label">HIGH</span>
+        </div>
+
+        <!-- MEDIUM -->
+        <div class="small-2 medium-2 large-2 columns">
+          <div id="play-medium" class="number-circle" style="background-color:#fc625d;"></div>
+          <span class="tiny-label">MED</span>
+        </div>
+
+        <!-- LIGHT -->
+        <div class="small-2 medium-2 large-2 columns">
+          <div id="play-light" class="number-circle" style="background-color:#e5e456; color:#000;"></div>
+          <span class="tiny-label">LIGHT</span>
+        </div>
+
+        <!-- LOCAL -->
+        <div class="small-2 medium-2 large-2 columns">
+          <div id="play-local" class="number-circle" style="background-color:#ffffff; color:#000;"></div>
+          <span class="tiny-label">LOCAL</span>
+        </div>
+
+        <!-- RECURRENT/NEW -->
+        <div class="small-2 medium-2 large-2 columns">
+          <div id="play-recurrent" class="number-circle" style="background-color:#71a954;"></div>
+          <span class="tiny-label">R/N</span>
+        </div>
+
+        <!-- BREAK -->
+        <div class="small-2 medium-2 large-2 columns">
+          <div id="play-break" class="number-circle" style="background-color:#333333;"></div>
+          <span class="tiny-label">BREAK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row fixed-bottom-panel">
+    <div class="small-4 medium-4 large-3 columns">
+      <a href="#" id="blank-play-button" class="tiny secondary button">+ Blank Play</a>
+      <a href="#" id="air-break-button" class="tiny secondary button">+ Air Break</a>
+    </div>
+  </div>
+</div>
+<!-- End fixed header section. -->
+
+<!-- ======================================================================================
+  NEW SHOW
+======================================================================================== -->
+<div id="new-show-container" class="row-container">
+
+  <div class="row parent">
+
+    <!-- Time -->
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:54:01 PM</span><br />
+    </div>
+
+    <!-- Parent Row -->
+    <div class="row parent">
+
+      <!-- Host Name -->
+      <div class="small-2 medium-2 large-2 columns">
+
+        <label>
+          <select id="air-host-name">
+            <option value="select">choose host</option>
+          </select>
+        </label>
+
+      </div>
+
+      <!-- Program Title -->
+      <div class="small-3 medium-3 large-3 columns">
+
+        <label>
+          <select id="air-program-title">
+            <option value="select">select program title</option>
+          </select>
+        </label>
+
+      </div>
+
+      <!-- Program Tagline -->
+      <div class="small-4 medium-4 large-4 columns">
+
+        <label>
+          <input type="text" placeholder="add tagline" aria-describedby="exampleHelpText">
+        </label>
+
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="small-1 medium-1 large-11 row-align-right columns">
+
+      <a href="#" class="small hollow button song-button">CANCEL</a>
+      <a href="#" class="small button song-button">SAVE</a>
+
+    </div>
+  </div><hr/>
+
+</div>
+
+<!-- ======================================================================================
+  AIR BREAK
+======================================================================================== -->
+
+<div id="air-break-container" class="row-container">
+
+  <!-- Air Break Row-->
+  <div class="row parent">
+
+    <!-- Time -->
+    <div class="small-2 medium-2 large-2 columns">
+      <span id="airbreak-time" class="small-time"></span>
+    </div>
+
+    <!-- Circle -->
+    <div class="small-1 medium-1 large-1 columns" style="text-align:center;">
+      <div class="circle air-break"></div>
+    </div>
+
+    <!-- Text -->
+    <div class="small-3 medium-3 large-3 columns end">
+      <span class="small-time">Air Break</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="small-6 medium-6 large-6 row-align-right columns">
+
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+
+    </div><hr />
+
+  </div>
+</div>
+
+<!-- ======================================================================================
+  BLANK PLAY
+======================================================================================== -->
+
+<div id="blank-play-container" class="row-container">
+
+  <div class="row collapse">
+    <div class="small-2 medium-2 large-2 columns push-right">
+      <span class="field-title">ARTIST</span>
+      <input type="text" style="width:100%;" />
+      <select multiple="multiple" class="expanded-selection" id="artist-select" onmouseout="matchSelectionSizes('artist-select');" style="resize:vertical;">
+        <option>The Wedding Present</option>
+      </select>
+    </div>
+
+    <div class="small-2 medium-2 large-2 columns push-right">
+      <span class="field-title">ALBUM</span>
+      <input type="text" style="width:100%;" />
+      <select multiple="multiple" class="expanded-selection" id="album-select">
+        <option>Take Foundation</option>
+      </select>
+    </div>
+
+    <div class="small-2 medium-2 large-2 columns push-right">
+      <span class="field-title">SONG</span>
+      <input type="text" style="width:100%;" />
+      <select multiple="multiple" class="expanded-selection" id="song-select">
+        <option>Interstate 5</option>
+        <option>interstate 5</option>
+        <option>Interstate 5 special release</option>
+        <option>Interstate 5 (extended version)</option>
+      </select>
+    </div>
+
+    <div class="small-2 medium-2 large-2 columns push-right">
+      <span class="field-title">LABEL</span>
+      <input type="text" style="width:100%;" />
+      <select multiple="multiple" class="expanded-selection" id="label-select">
+        <option>Manifest Records</option>
+      </select>
+    </div>
+
+    <!-- RADIO BUTTONS -->
+    <!-- TODO - refactor to JQuery -->
+    <div class="small-3 medium-3 large-3 columns">
+      <div class="row">
+        <div class="small-2 medium-2 large-2 columns" style="text-align: center;">
+          <input id="radio-high" type="radio" name="group1" class="hide-radio-for-image" id="high" />
+          <a onclick="setRadio('high', 'img/radio/radio/blue.gif', 'img/radio/blue-selected.gif', 'high-image', true);">
+            <img src="../../DJ_Playlist_Tool/img/radio/blue.gif" id="high-image" />
+          </a>
+          <span class="check-title">HIGH</span>
+        </div>
+        <div class="small-2 medium-2 large-2 columns" style="text-align: center;">
+          <input id="radio-medium" type="radio" name="group1" class="hide-radio-for-image" id="med" />
+          <a onclick="setRadio('med', 'img/radio/red.gif', 'img/radio/red-selected.gif', 'med-image', true);"><img src="../../DJ_Playlist_Tool/img/radio/red.gif" id="med-image" /></a>
+          <span class="check-title">MED</span>
+        </div>
+        <div class="small-2 medium-2 large-2 columns" style="text-align: center;">
+          <input id="radio-light" type="radio" name="group1" class="hide-radio-for-image" id="light" />
+          <a onclick="setRadio('light', 'img/radio/yellow.gif', 'img/radio/yellow-selected.gif', 'light-image', true);"><img src="../../DJ_Playlist_Tool/img/radio/yellow.gif" id="light-image" /></a>
+          <span class="check-title">LIGHT</span>
+        </div>
+        <div class="small-2 medium-2 large-2 columns" style="text-align: center;">
+          <input id="check-recurrent" type="checkbox" name="rn" class="hide-radio-for-image" id="rn-check" />
+          <a onclick="setRadio('rn-check', 'img/radio/green.gif', 'img/radio/green-selected.gif', 'rn-check-image', false);"><img src="../../DJ_Playlist_Tool/img/radio/green.gif" id="rn-check-image" /></a>
+          <span class="check-title">R/N</span>
+        </div>
+        <div class="small-2 medium-2 large-2 columns end" style="text-align: center;">
+          <input id="check-libary" type="checkbox" name="library" class="hide-radio-for-image" id="library-check" />
+          <a onclick="setRadio('library-check', 'img/radio/grey.gif', 'img/radio/grey-selected.gif', 'library-check-image', false);"><img src="../../DJ_Playlist_Tool/img/radio/grey.gif" id="library-check-image" /></a>
+          <span class="check-title">LIBRARY</span>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="small-6 medium-6 large-6 columns" style="padding-top:20px;">
+          <input id="check-local" type="checkbox" /><span class="large-check-title">LOCAL ARTIST</span><br />
+          <input id="check-studio" type="checkbox" /><span class="large-check-title">IN-STUDIO</span><br />
+          <input id="check-request" type="checkbox" /><span class="large-check-title">REQUEST</span><br />
+          <input id="check-purchase" type="checkbox" checked="true" /><span class="large-check-title">PURCHASABLE</span><br />
+          <table class="clear-style">
+            <tr class="clear-style">
+              <td class="clear-style"><input id="check-librarian" type="checkbox" /></td>
+              <td class="clear-style"><p class="tiny-check-title">FLAGGED FOR LIBRARIAN</p></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="small-6 medium-6 large-6 columns">
+          <input id="check-artwork" type="checkbox" checked="true" /><span class="large-check-title">USE THIS ART</span>
+          <img src="img/150x150.png" /> <!-- Album art placeholder -->
+          <a id="button-upload-new" href="#" class="small secondary button upload-new">Upload New</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row collapse">
+    <div class="small-9 medium-9 large-9 columns push-right">
+      <textarea id="text-blank-play-comments" class="new-comments-section" rows="3" placeholder="add new comments"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="field-title">SELECT FROM PREVIOUS COMMENTS</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns end">
+      <div class="row">
+        <div class="small-1 medium-1 large-1 columns">
+          <input type="checkbox" />
+        </div>
+        <div class="small-11 medium-11 large-11 columns">
+          <!-- Exising comment goes here. -->
+          <span><small><u>John Doe:</u> <u>10/28/2015</u></small></span>
+          <p class="existing-comment">A description of some sort would follow the name and date. Could be long, or could be short. The check box can be multiple or single selection.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-1 medium-1 large-1 columns">
+          <input type="checkbox" />
+        </div>
+        <div class="small-11 medium-11 large-11 columns">
+          <!-- Exising comment goes here. -->
+          <span><small><u>John Doe:</u> <u>10/28/2015</u></small></span>
+          <p class="existing-comment">A description of some sort would follow the name and date. Could be long, or could be short. The check box can be multiple or single selection.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-1 medium-1 large-1 columns">
+          <input type="checkbox" />
+        </div>
+        <div class="small-11 medium-11 large-11 columns">
+          <!-- Exising comment goes here. -->
+          <span><small><u>John Doe:</u> <u>10/28/2015</u></small></span>
+          <p class="existing-comment">A description of some sort would follow the name and date. Could be long, or could be short. The check box can be multiple or single selection.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="small-8 medium-8 large-8 columns"></div>
+    <div class="small-4 medium-4 large-4 columns" style="text-align:right;">
+      <a class="small hollow button" href="#">CANCEL</a>
+      <a class="small button" href="#">SAVE</a>
+    </div>
+  </div>
+  <hr />
+</div>
+
+
+<!-- ======================================================================================
+  PLAY ROWS
+======================================================================================== -->
+
+<div class="row-container">
+
+  <!-- PLAY -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:54:01 PM</span><br />
+      <div class="circle" style="background-color:#ffffff;"></div>
+      <div class="circle" style="background-color:#fc625d;"></div>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns">
+      <img src="img/80x80.png" />
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="song-name">No New Tale to Tell</span>
+      <span class="band-name">Love and Rockets</span>
+      <span class="album-name">Earth Sun Moon</span>
+      <span class="record-label">1987: Beggars Banquet</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns">
+      <textarea class="comments" placeholder="add comments"></textarea>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns hide-buttons">
+      <a href="#"><img class="play-edit" src="img/misc/img-edit.png" /></a>
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+    </div>
+  </div><hr />
+
+
+  <!-- PLAY -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:50:01 PM</span><br />
+      <div class="circle" style="background-color:#4a90e2;"></div>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns">
+      <img src="img/80x80.png" />
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="song-name">Flesh Without Blood</span>
+      <span class="band-name">Grimes</span>
+      <span class="album-name">Art Angels</span>
+      <span class="record-label">2015: 4AD</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns">
+      <p class="comments-static">It's tonight! Claire Elise Boucher, better known as Grimes, is playing the Showbox tonight, Wednesday, October 28th, 2015</p>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns hide-buttons">
+      <a href="#"><img src="img/misc/img-edit.png" /></a>
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+    </div>
+  </div><hr />
+
+
+  <!-- AIR BREAK -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:41:01 PM</span>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns" style="text-align:center;">
+      <div class="circle air-break"></div>
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns end">
+      <span class="small-time">Air Break</span>
+    </div>
+  </div><hr />
+
+  <!-- PLAY -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:50:01 PM</span><br />
+      <div class="circle" style="background-color:#71a954;"></div>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns">
+      <img src="img/80x80.png" />
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="song-name">Santa Fe</span>
+      <span class="band-name">Beirut</span>
+      <span class="album-name">The Rip Tide</span>
+      <span class="record-label">2011: Pompeii</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns">
+      <p class="comments-static">And whatever comes through the door, I'll see it face to face..." <a href="#">Here are the lyrics to Santa Fe</a></p>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns hide-buttons">
+      <a href="#"><img src="img/misc/img-edit.png" /></a>
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+    </div>
+  </div><hr />
+
+  <!-- PLAY -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:54:01 PM</span><br />
+      <div class="circle" style="background-color:#ffffff;"></div>
+      <div class="circle" style="background-color:#fc625d;"></div>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns">
+      <img src="img/80x80.png" />
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="song-name">No New Tale to Tell</span>
+      <span class="band-name">Love and Rockets</span>
+      <span class="album-name">Earth Sun Moon</span>
+      <span class="record-label">1987: Beggars Banquet</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns">
+      <textarea class="comments" placeholder="add comments"></textarea>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns hide-buttons">
+      <a href="#"><img src="img/misc/img-edit.png" /></a>
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+    </div>
+  </div><hr />
+
+  <!-- PLAY -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:50:01 PM</span><br />
+      <div class="circle" style="background-color:#4a90e2;"></div>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns">
+      <img src="img/80x80.png" />
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="song-name">Flesh Without Blood</span>
+      <span class="band-name">Grimes</span>
+      <span class="album-name">Art Angels</span>
+      <span class="record-label">2015: 4AD</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns">
+      <p class="comments-static">It's tonight! Claire Elise Boucher, better known as Grimes, is playing the Showbox tonight, Wednesday, October 28th, 2015</p>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns hide-buttons">
+      <a href="#"><img src="img/misc/img-edit.png" /></a>
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+    </div>
+  </div><hr />
+
+  <!-- AIR BREAK -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:41:01 PM</span>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns" style="text-align:center;">
+      <div class="circle air-break"></div>
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns end">
+      <span class="small-time">Air Break</span>
+    </div>
+  </div><hr />
+
+  <!-- PLAY -->
+  <div class="row parent">
+    <div class="small-2 medium-2 large-2 columns">
+      <span class="small-time">12:50:01 PM</span><br />
+      <div class="circle" style="background-color:#71a954;"></div>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns">
+      <img src="img/80x80.png" />
+    </div>
+
+    <div class="small-3 medium-3 large-3 columns">
+      <span class="song-name">Santa Fe</span>
+      <span class="band-name">Beirut</span>
+      <span class="album-name">The Rip Tide</span>
+      <span class="record-label">2011: Pompeii</span>
+    </div>
+
+    <div class="small-5 medium-5 large-5 columns">
+      <p class="comments-static">And whatever comes through the door, I'll see it face to face..." <a href="#">Here are the lyrics to Santa Fe</a></p>
+    </div>
+
+    <div class="small-1 medium-1 large-1 columns hide-buttons">
+      <a href="#"><img src="img/misc/img-edit.png" /></a>
+      <a href="#" class="small hollow button song-button">REJECT</a>
+      <a href="#" class="small button song-button">SAVE</a>
+    </div>
+  </div><hr />
+
+</div> <!-- End row-container div. -->
+
+<table id='table'>
+  <tr>
+    <th>Heading 1</th>
+    <th>Heading 2</th>
+  </tr>
+</table>
+
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/what-input/what-input.js"></script>
+<script src="bower_components/foundation-sites/dist/foundation.js"></script>
+<script src="js/app.js"></script>
+<script src="js/kexp.js"></script>
+</body>
+</html>

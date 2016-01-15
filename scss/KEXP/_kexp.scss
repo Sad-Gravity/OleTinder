@@ -1,0 +1,269 @@
+@charset 'utf-8';
+
+// Fixed top section custom styles
+.sticky-header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.row-container {
+  position: relative;
+  top: 280px;
+}
+
+.fixed-logo-panel {
+  background-color: #000000;
+
+  img {
+    padding: 7px 0px 7px 20px;
+  }
+}
+
+.row-align-right{
+  text-align: right;
+}
+
+.fixed-band-panel {
+  background-color: #6f747c;
+
+  img {
+    padding: 12px 0px 12px 20px;
+  }
+}
+
+.fixed-bottom-panel {
+  background-color: #545b64;
+  margin-bottom: 15px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.header-dj-name {
+  line-height: 1.4rem;
+  font-size: 1.4rem;
+}
+
+.header-show-title {
+  color: #fff;
+  line-height: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.header-slogan-desc {
+  color: #fff;
+  line-height: 0.9rem;
+  font-size: 0.9rem;
+}
+.header-band-name {
+  line-height: 1.4rem;
+  font-size: 1.4rem;
+}
+
+.header-song-title {
+  color: #fff;
+  line-height: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.header-band-desc {
+  color: #fff;
+  line-height: 0.9rem;
+  font-size: 0.9rem;
+}
+
+.number-circle {
+  // This class requires the background-color to be set inline. Small color
+  // classes could be created - whatever you find easier when the circles are
+  // generated.
+
+  border-radius: 50%;
+
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  display: inline-block;
+
+  color: #fff;
+  text-align: center;
+}
+
+.tiny-label {
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+}
+
+.time {
+  text-align: center;
+  color: #fff;
+
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  span {
+    padding:0;
+    margin:0;
+  }
+}
+
+.date {
+  color: #fff;
+  text-align: right;
+}
+
+// End fixed top section
+
+// Song Rows
+.small-time {
+  font-size: 0.8rem;
+  line-height: 40px;
+
+  color: #333333;
+}
+
+.circle {
+  // This class requires the background-color to be set inline. Small color
+  // classes could be created - whatever you find easier when the circles are
+  // generated.
+
+  border-radius: 50%;
+
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.air-break {
+  margin-top:10px;
+  background-color: #333333;
+}
+
+.song-button {
+  width: 70px;
+  padding-top:0;
+  padding-bottom:0;
+}
+
+.hide-buttons {
+  display: none;
+}
+
+.parent:hover .hide-buttons {
+  display: block;
+}
+
+.song-name {
+  font-size: 0.9em;
+  line-height: 0.9rem;
+  color: #444444;
+  display: block;
+  padding-top: 5px;
+}
+
+.band-name {
+  font-size: 0.7em;
+  font-weight: bold;
+  display: block;
+  padding-bottom: 5px;
+}
+
+.album-name {
+  font-size: 0.7em;
+  display: block;
+}
+
+.record-label {
+  font-size: 0.7em;
+  color: #666666;
+  display: block;
+}
+
+.comments {
+  padding-bottom:0;
+  margin-bottom:0;
+
+  height: 80px;
+}
+
+.comments-static {
+  font-size: 0.8rem;
+}
+
+// Add New Section
+.field-title {
+  font-size: 10px;
+  font-weight: bold;
+  padding-left: 8px;
+}
+
+.expanded-selection {
+  margin:0;
+  overflow-y: auto;
+  padding-bottom: 100px;
+  margin-bottom: 10px;
+
+  font-size: 12px;
+}
+
+// This class paired with collapsing the foundation row allows
+// me to set custom margins between columns. The sizes of the
+// selection boxes didn't quite fit into the 12 column grid, so
+// this is the cleanest solution.
+.push-right {
+  margin-left: 10px;
+}
+
+// The collapsed foundation row doesn't match up 100% with the
+// row below containing the comments section, so this class
+// lines everything up properly again.
+.new-comments-section {
+  width: 92.5%;
+}
+
+.existing-comment {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.check-title {
+  font-size: 10px;
+  font-weight: bold;
+  padding:0;
+  margin:0;
+}
+
+.large-check-title {
+  font-family: Arial, sans-serif;
+  padding-left: 8px;
+  padding-bottom: 2px;
+  font-size: 0.75rem;
+  color: #333333;
+}
+
+.tiny-check-title {
+  font-size: 10px;
+  font-weight: bold;
+  padding-left: 8px;
+  line-height: 11px;
+  color: #333333;
+  display: block;
+}
+
+.upload-new {
+  width: 100%;
+  margin-top: 20px;
+}
+
+// Fix to get "flagged for librarian" checkbox to line up properly.
+.clear-style {
+  padding:0;
+  margin:0;
+  background-color: #efefef;
+}
+
+// Colored radio buttons
+.hide-radio-for-image {
+  margin:0;
+  padding:0;
+  display: none;
+}
